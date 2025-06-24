@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.5'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'org.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot 기본 의존성
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+// DB & JPA
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
+
+// JWT
+    implementation "io.jsonwebtoken:jjwt-api:0.12.5"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:0.12.5"
+    runtimeOnly "io.jsonwebtoken:jjwt-jackson:0.12.5"
+
+// AWS (하나만 선택 권장 – v2 사용 시 아래만 사용)
+    implementation 'com.amazonaws:aws-java-sdk-s3:1.12.548'
+
+//    implementation 'software.amazon.awssdk:s3:2.20.140' // 최신 버전 확인 후 업데이트
+
+// Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+// 로그
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+//    implementation 'ch.qos.logback:logback-classic:1.4.14'
+
+// JSON
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+// Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
