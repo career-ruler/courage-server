@@ -27,6 +27,7 @@ spring:
 logging:
   level:
     org.hibernate.SQL: DEBUG
+    org.example.courage.global.auth: DEBUG
 #    org.hibernate.type.descriptor.sql: DEBUG
 #    com.zaxxer.hikari: DEBUG
 #    org.springframework: DEBUG
