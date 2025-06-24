@@ -21,23 +21,19 @@ CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of(
-                "https://port-0-haso-server-m70dmespb703c228.sel4.cloudtype.app",
-                "http://localhost:8345",
+                "https://port-0-courage-server-m68t2uqb75f7d079.sel4.cloudtype.app",
+                "http://localhost:8080",
                 "http://localhost:3000"
         ));
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
-        // 허용할 헤더
         config.setAllowedHeaders(List.of("Content-Type", "Authorization"));
 
-        // 응답 헤더 노출 허용 (필요한 경우)
         config.setExposedHeaders(List.of("Authorization"));
 
-        // 인증 정보 포함 허용
-        config.setAllowCredentials(true);
+//        config.setAllowCredentials(true);
 
-        // 모든 경로에 대해 CORS 적용
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }

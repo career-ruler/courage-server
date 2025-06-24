@@ -6,6 +6,7 @@ import org.example.courage.global.auth.JwtAuthenticationFilter;
 import org.example.courage.global.auth.JwtExceptionFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -26,7 +27,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/signup", "/auth/signin", "/auth/refresh").permitAll()
@@ -36,7 +37,7 @@ public class SecurityConfig {
                 .addFilterBefore(exceptFilter, JwtAuthenticationFilter.class)
                 .headers(headers -> headers
                         .addHeaderWriter((request, response) -> {
-                            response.setHeader("Content-Security-Policy", "default-src 'self'; connect-src 'self' https://port-0-haso-server-m70dmespb703c228.sel4.cloudtype.app;");
+                            response.setHeader("Content-Security-Policy", "default-src 'self'; connect-src 'self' https://port-0-courage-server-m68t2uqb75f7d079.sel4.cloudtype.app;");
                         })
                 );
 

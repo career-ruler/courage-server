@@ -30,7 +30,6 @@ public class JwtExceptionFilter extends OncePerRequestFilter {
 
     @ExceptionHandler(CustomException.class)
     public BaseResponse<?> handleCustomException(CustomException exception) {
-        // 여기서 custom exception을 처리하는 로직을 수정하여 더 자세한 오류 메시지를 전송하도록 해주세요.
         return new BaseResponse<>(exception.getStatus(), exception.getMessage(), null);
     }
 
